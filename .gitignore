@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+vacancies.txt
+.DS_Store
