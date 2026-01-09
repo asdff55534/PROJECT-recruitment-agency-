@@ -90,15 +90,16 @@ def main_menu():
             display_vacancies_simple(sorted_vac, 'Список всех вакансий с испытательным сроком не менее 2 месяцев, отсортированный по следующему ключу: испытательный срок (по убыванию) + необходимый стаж работы (по убыванию) + максимальный возраст (по возрастанию).')
 
         elif choice == '4':
-            try:
-                n1 = float(input('Минимальный оклад: '))
-                n2 = float(input('Максимальный оклад: '))
-                if n1 > n2:
-                    print('Ошибка: минимум больше максимума')
-                    continue
-            except:
-                print('Ошибка ввода')
-                continue
+            while True:
+                try:
+                    n1 = float(input('Минимальный оклад: '))
+                    n2 = float(input('Максимальный оклад: '))
+                    if n1 > n2:
+                        print('Ошибка: минимум больше максимума. Попробуйте снова')
+                        continue
+                except:
+                    print('Ошибка ввода')
+                    break
 
             from report3 import sort_report3
             sorted_vac = sort_report3(vacancies, n1, n2)
@@ -109,7 +110,7 @@ def main_menu():
             break
 
         else:
-            print('Неверный выбор')
+            print('Нет такого варианта ответа')
 
         input('\nНажмите Enter...')
 
