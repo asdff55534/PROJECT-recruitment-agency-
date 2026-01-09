@@ -92,21 +92,35 @@ def main_menu():
             sorted_vac = sort_report2(vacancies)
             display_vacancies_simple(sorted_vac, 'Список всех вакансий с испытательным сроком не менее 2 месяцев, отсортированный по следующему ключу: испытательный срок (по убыванию) + необходимый стаж работы (по убыванию) + максимальный возраст (по возрастанию).')
 
+
         elif choice == '4':
+            print('\nВведите диапазон оклада:')
+
             while True:
                 try:
-                    n1 = float(input('Минимальный оклад: '))
-                    n2 = float(input('Максимальный оклад: '))
-                    if n1 > n2:
-                        print('Ошибка: минимум больше максимума. Попробуйте снова')
+                    n1 = float(input('Минимальный оклад (руб.): '))
+
+                    if n1 < 0:
+                        print('Ошибка: оклад не может быть отрицательным')
                         continue
-                except:
-                    print('Ошибка ввода')
+
+                    n2 = float(input('Максимальный оклад (руб.): '))
+
+                    if n2 < 0:
+                        print('Ошибка: оклад не может быть отрицательным')
+                        continue
+
+                    if n1 > n2:
+                        print('Ошибка: минимальный оклад больше максимального')
+                        print('Попробуйте снова...')
+                        continue
                     break
+                except ValueError:
+                    print('Ошибка: введите числовое значение')
 
             from report3 import sort_report3
-            sorted_vac = sort_report3(vacancies, n1, n2)
-            display_vacancies_simple(sorted_vac, f'ОТЧЕТ 3: Оклад {n1}-{n2} руб.')
+            sorted_vacancies = sort_report3(vacancies, n1, n2)
+            display_vacancies_simple(sorted_vacancies, f'ОТЧЕТ 3: Вакансии с окладом от {n1} до {n2} руб.')
 
         elif choice == '5':
             print('Выход')
