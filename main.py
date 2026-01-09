@@ -115,8 +115,5 @@ def main_menu():
         else:
             print('Нет такого варианта ответа')
 
-        input('\nНажмите Enter...')
-
-
 if __name__ == '__main__':
     main_menu()
