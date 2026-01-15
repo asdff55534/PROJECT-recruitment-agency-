@@ -7,19 +7,22 @@ def sort_report2(vacancies):
             filtered.append(v)
 
     def compare_vacancies(v1, v2):
+        # 1. Испытательный срок по убыванию
         if v1.probation > v2.probation:
             return -1
         elif v1.probation < v2.probation:
             return 1
         else:
+            # 2. Стаж по убыванию
             if v1.experience > v2.experience:
                 return -1
             elif v1.experience < v2.experience:
                 return 1
             else:
-                if v1.max_age > v2.max_age:
+                # 3. Максимальный возраст по возрастанию
+                if v1.max_age < v2.max_age:
                     return -1
-                elif v1.max_age < v2.max_age:
+                elif v1.max_age > v2.max_age:
                     return 1
                 else:
                     return 0
